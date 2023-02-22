@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/Soni295/shortlink/src/controllers/linkctrl"
-	"github.com/Soni295/shortlink/src/entity"
+	"github.com/Soni295/shortlink/src/domain/entity"
 	"github.com/labstack/echo"
 )
 

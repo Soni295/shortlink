@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/Soni295/shortlink/src/controllers/linkctrl"
-	"github.com/Soni295/shortlink/src/database/mock"
+	"github.com/Soni295/shortlink/src/infrastucture/persistence"
 	"github.com/Soni295/shortlink/src/routes/linkroute"
 	linkserv "github.com/Soni295/shortlink/src/service/linkServ"
 	"github.com/labstack/echo"
@@ -13,13 +13,13 @@ import (
 type Routers struct{}
 
 func (r *Routers) Build(e *echo.Echo) *echo.Echo {
-	db, err := mock.NewLinkDbMock()
+	repo, err := persistence.NewRepositories()
 	if err != nil {
 		log.Println(err.Error())
 		return nil
 	}
 
-	serv, err := linkserv.New(db, 10)
+	serv, err := linkserv.New(repo.Link, 10)
 	if err != nil {
 		log.Println(err.Error())
 		return nil
