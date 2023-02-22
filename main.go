@@ -1,19 +1,15 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-
+	"github.com/Soni295/shortlink/src/routes"
 	"github.com/labstack/echo"
 )
 
 const PORT = ":8080"
 
 func main() {
-	fmt.Println("Server running on", PORT)
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
+	r := routes.Routers{}
+	r.Build(e)
 	e.Logger.Fatal(e.Start(PORT))
 }
